@@ -4,11 +4,47 @@
 
 const int BOARD_SIZE = 8;
 
-struct Point
+class Point
 {
   int x;
   int y;
-} Point;
+
+public:
+  Point(int x, int y);
+  bool is(int x, int y) const;
+  void left();
+  void right();
+  void up();
+  void down();
+};
+
+Point::Point(int x, int y)
+{
+  this->x = x;
+  this->y = x;
+}
+
+bool Point::is(int x, int y) const
+{
+  return this->x == x && this->y == y;
+}
+
+void Point::left()
+{
+  x--;
+}
+void Point::right()
+{
+  x++;
+}
+void Point::up()
+{
+  y--;
+}
+void Point::down()
+{
+  y++;
+}
 
 void initialize()
 {
@@ -17,7 +53,7 @@ void initialize()
   curs_set(0);
 }
 
-void show(struct Point p)
+void show(const struct Point &p)
 {
   mvprintw(0, 0, "Reversi Game!!");
 
@@ -28,7 +64,7 @@ void show(struct Point p)
     for (int x = 0; x < BOARD_SIZE; x++)
     {
       std::string str;
-      if (x == p.x && y == p.y)
+      if (p.is(x, y))
       {
         str = "a";
       }
@@ -43,20 +79,13 @@ void show(struct Point p)
   mvprintw(BOARD_SIZE + 2, 1, "+--------+");
 
   mvprintw(BOARD_SIZE + 3, 0, "Press 'q' to quit.");
-
-  auto output = boost::format("%d %d") % p.x % p.y;
-  auto str = output.str().c_str();
-  mvprintw(BOARD_SIZE + 4, 0, str);
 }
 
 int main(void)
 {
   initialize();
 
-  struct Point p
-  {
-    3, 4
-  };
+  Point p(3, 4);
 
   while (true)
   {
@@ -66,19 +95,19 @@ int main(void)
 
     if (ch == 'h')
     {
-      p.x--;
+      p.left();
     }
     else if (ch == 'j')
     {
-      p.y++;
+      p.down();
     }
     else if (ch == 'k')
     {
-      p.y--;
+      p.up();
     }
     else if (ch == 'l')
     {
-      p.x++;
+      p.right();
     }
     else if (ch == 'q')
     {
