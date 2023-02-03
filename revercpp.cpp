@@ -2,43 +2,9 @@
 #include <boost/format.hpp>
 #include <string>
 
+#include "point.hpp"
+
 const int BOARD_SIZE = 8;
-
-class Point
-{
-  int x;
-  int y;
-
-public:
-  Point(int x, int y) : x(x), y(y) {}
-  bool is(int x, int y) const;
-  void left();
-  void right();
-  void up();
-  void down();
-};
-
-bool Point::is(int x, int y) const
-{
-  return this->x == x && this->y == y;
-}
-
-void Point::left()
-{
-  x--;
-}
-void Point::right()
-{
-  x++;
-}
-void Point::up()
-{
-  y--;
-}
-void Point::down()
-{
-  y++;
-}
 
 void initialize()
 {

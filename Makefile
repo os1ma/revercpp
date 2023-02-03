@@ -3,7 +3,7 @@ CFLAGS += -Wall -O3
 CLIBS += -lncurses
 
 TARGET = revercpp
-SRCS = revercpp.cpp
+SRCS = $(shell ls *.cpp)
 
 $(TARGET): $(SRCS)
 	$(CC) $(CFLAGS) -o $@ $^ $(CLIBS)
