@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <boost/format.hpp>
+#include <string>
 
 const int BOARD_SIZE = 8;
 
@@ -18,13 +19,34 @@ void initialize()
 
 void show(struct Point p)
 {
-  mvprintw(0, 0, "Reversi Game!");
+  mvprintw(0, 0, "Reversi Game!!");
+
+  mvprintw(1, 1, "+--------+");
+  for (int y = 0; y < BOARD_SIZE; y++)
+  {
+    mvprintw(2 + y, 1, "|");
+    for (int x = 0; x < BOARD_SIZE; x++)
+    {
+      std::string str;
+      if (x == p.x && y == p.y)
+      {
+        str = "a";
+      }
+      else
+      {
+        str = " ";
+      }
+      mvprintw(2 + y, 2 + x, str.c_str());
+    }
+    mvprintw(2 + y, BOARD_SIZE + 2, "|");
+  }
+  mvprintw(BOARD_SIZE + 2, 1, "+--------+");
+
+  mvprintw(BOARD_SIZE + 3, 0, "Press 'q' to quit.");
 
   auto output = boost::format("%d %d") % p.x % p.y;
   auto str = output.str().c_str();
-  mvprintw(1, 0, str);
-
-  mvprintw(BOARD_SIZE, 0, "Press 'q' to quit.");
+  mvprintw(BOARD_SIZE + 4, 0, str);
 }
 
 int main(void)
@@ -48,11 +70,11 @@ int main(void)
     }
     else if (ch == 'j')
     {
-      p.y--;
+      p.y++;
     }
     else if (ch == 'k')
     {
-      p.y++;
+      p.y--;
     }
     else if (ch == 'l')
     {
