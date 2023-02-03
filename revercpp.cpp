@@ -10,19 +10,13 @@ class Point
   int y;
 
 public:
-  Point(int x, int y);
+  Point(int x, int y) : x(x), y(y) {}
   bool is(int x, int y) const;
   void left();
   void right();
   void up();
   void down();
 };
-
-Point::Point(int x, int y)
-{
-  this->x = x;
-  this->y = x;
-}
 
 bool Point::is(int x, int y) const
 {
