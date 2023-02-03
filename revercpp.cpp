@@ -1,7 +1,7 @@
-#include <iostream>
-using namespace std;
+#include <ncurses.h>
 
-int main()
-{
-  cout << "Hello World\n";
+int main(void) {
+  initscr();
+  getch();
+  endwin();
 }
