@@ -9,7 +9,7 @@ struct Point
   int y;
 } Point;
 
-void init()
+void initialize()
 {
   initscr();
   noecho();
@@ -29,7 +29,7 @@ void show(struct Point p)
 
 int main(void)
 {
-  init();
+  initialize();
 
   struct Point p
   {
@@ -42,7 +42,23 @@ int main(void)
 
     int ch = getch();
 
-    if (ch == 'q')
+    if (ch == 'h')
+    {
+      p.x--;
+    }
+    else if (ch == 'j')
+    {
+      p.y--;
+    }
+    else if (ch == 'k')
+    {
+      p.y++;
+    }
+    else if (ch == 'l')
+    {
+      p.x++;
+    }
+    else if (ch == 'q')
     {
       break;
     }
