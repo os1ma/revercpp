@@ -14,7 +14,10 @@
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
-      "extensions": ["ms-vscode.cpptools-extension-pack"]
+      "extensions": [
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.makefile-tools"
+      ]
     }
   }
 
