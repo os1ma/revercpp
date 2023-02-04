@@ -20,7 +20,7 @@ namespace ui
         std::string str;
         if (p.is(x, y))
         {
-          str = "a";
+          str = "c";
         }
         else
         {
