@@ -3,7 +3,7 @@ CFLAGS += -Wall -O3
 CLIBS += -lncurses
 
 TARGET = revercpp
-SRCS = $(shell ls *.cpp)
+SRCS = $(shell ls *.cpp ui/*.cpp)
 OBJS = $(SRCS:.cpp=.o)
 
 $(TARGET): $(OBJS)

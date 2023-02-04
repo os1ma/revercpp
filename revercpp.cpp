@@ -2,7 +2,7 @@
 #include <boost/format.hpp>
 #include <string>
 
-#include "point.hpp"
+#include "ui/point.hpp"
 
 const int BOARD_SIZE = 8;
 
