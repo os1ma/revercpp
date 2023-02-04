@@ -2,16 +2,7 @@
 #include <iostream>
 
 #include "board.hpp"
-
-namespace
-{
-  enum Disc
-  {
-    Empty = 0,
-    Dark = 1,
-    Light = 2
-  };
-}
+#include "disc.hpp"
 
 namespace engine
 {

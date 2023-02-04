@@ -3,6 +3,7 @@
 
 #include "board.hpp"
 #include "point.hpp"
+#include "../engine/disc.hpp"
 
 namespace ui
 {
@@ -24,13 +25,13 @@ namespace ui
         else
         {
           int disc = board.get_discs()[y][x];
-          if (disc == 1)
+          if (disc == engine::Disc::Dark)
           {
-            str = "W";
+            str = "D";
           }
-          else if (disc == 2)
+          else if (disc == engine::Disc::Light)
           {
-            str = "B";
+            str = "L";
           }
           else
           {
