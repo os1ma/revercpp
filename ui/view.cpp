@@ -1,8 +1,19 @@
 #include <ncurses.h>
 #include <boost/format.hpp>
+#include <string>
 
 #include "point.hpp"
 #include "board.hpp"
+
+namespace
+{
+  std::string message = "start!";
+
+  enum Colors
+  {
+    Warning = 1
+  };
+}
 
 namespace ui
 {
@@ -10,13 +21,22 @@ namespace ui
   void initialize()
   {
     initscr();
+
     noecho();
     curs_set(0);
+
+    start_color();
+    init_pair(Warning, COLOR_RED, COLOR_BLACK);
   }
 
   void show(const Point &p)
   {
     mvprintw(0, 0, "Reversi Game!!");
+
+    attron(COLOR_PAIR(Warning));
+    mvprintw(1, 0, message.c_str());
+    attroff(COLOR_PAIR(Warning));
+
     show_board(2, p);
     mvprintw(BOARD_SIZE + 4, 0, "Press 'q' to quit.");
   }
