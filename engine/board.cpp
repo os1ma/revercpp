@@ -21,4 +21,9 @@ namespace engine
     discs[4][3] = Light;
     discs[4][4] = Dark;
   }
+
+  void Board::place(Disc disc, int x, int y)
+  {
+    discs[y][x] = disc;
+  }
 }

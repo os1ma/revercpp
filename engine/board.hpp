@@ -18,6 +18,7 @@ namespace engine
 
   public:
     Board();
+    void place(Disc disc, int x, int y);
     std::array<std::array<Disc, BOARD_SIZE>, BOARD_SIZE> get_discs() const
     {
       return discs;
