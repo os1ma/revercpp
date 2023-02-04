@@ -6,6 +6,7 @@ namespace engine
   {
     Empty = 0,
     Dark = 1,
-    Light = 2
+    Light = 2,
+    Wall = 3,
   };
 }
