@@ -6,7 +6,9 @@
 
 namespace ui
 {
-  void show_board(int offset_y, const Point &p)
+  void show_board(int offset_y,
+                  const engine::Board &board,
+                  const Point &p)
   {
     mvprintw(offset_y, 1, "+--------+");
     for (int y = 0; y < BOARD_SIZE; y++)
@@ -21,7 +23,19 @@ namespace ui
         }
         else
         {
-          str = " ";
+          int disc = board.get_discs()[y][x];
+          if (disc == 1)
+          {
+            str = "W";
+          }
+          else if (disc == 2)
+          {
+            str = "B";
+          }
+          else
+          {
+            str = " ";
+          }
         }
         mvprintw(offset_y + 1 + y, 2 + x, str.c_str());
       }

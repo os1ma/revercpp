@@ -1,16 +1,21 @@
+#include <ncurses.h>
+
 #include "ui/view.hpp"
 #include "ui/point.hpp"
-#include <ncurses.h>
+
+#include "engine/board.hpp"
 
 int main(void)
 {
+  engine::Board board;
+
   ui::initialize();
 
-  ui::Point p(3, 4);
+  ui::Point p(0, 0);
 
   while (true)
   {
-    ui::show(p);
+    ui::show(board, p);
 
     int ch = getch();
 
