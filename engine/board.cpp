@@ -24,9 +24,9 @@ namespace engine
     next_disc = Disc::Dark;
   }
 
-  void Board::place(Disc disc, int x, int y)
+  void Board::place(Disc disc, Point p)
   {
-    discs[y][x] = disc;
+    discs[p.get_y()][p.get_x()] = disc;
     next_disc = disc == Disc::Dark ? Disc::Light : Disc::Dark;
   }
 }

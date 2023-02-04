@@ -7,7 +7,7 @@
 
 namespace
 {
-  std::string message = "start!";
+  std::string message = "";
 
   enum Colors
   {

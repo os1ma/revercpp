@@ -6,6 +6,7 @@
 #include "ui/point.hpp"
 
 #include "engine/board.hpp"
+#include "engine/point.hpp"
 
 int main(void)
 {
@@ -13,33 +14,34 @@ int main(void)
 
   ui::initialize();
 
-  ui::Point p(0, 0);
+  ui::Point cur(0, 0);
 
   while (true)
   {
-    ui::show(board, p);
+    ui::show(board, cur);
 
     auto ch = getch();
 
     if (ch == 'h')
     {
-      p.left();
+      cur.left();
     }
     else if (ch == 'j')
     {
-      p.down();
+      cur.down();
     }
     else if (ch == 'k')
     {
-      p.up();
+      cur.up();
     }
     else if (ch == 'l')
     {
-      p.right();
+      cur.right();
     }
     else if (ch == '\n')
     {
-      board.place(board.get_next_disc(), p.get_x(), p.get_y());
+      engine::Point p(cur.get_x(), cur.get_y());
+      board.place(board.get_next_disc(), p);
     }
     else if (ch == 'q')
     {

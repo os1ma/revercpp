@@ -3,6 +3,7 @@
 #include <array>
 
 #include "disc.hpp"
+#include "point.hpp"
 
 namespace
 {
@@ -20,7 +21,7 @@ namespace engine
   public:
     Board();
 
-    void place(Disc disc, int x, int y);
+    void place(Disc disc, Point p);
 
     std::array<std::array<Disc, BOARD_SIZE>, BOARD_SIZE> get_discs() const
     {
