@@ -43,6 +43,9 @@ namespace engine
     auto flip_points = list_flip_points(disc, p);
 
     discs[p.get_y()][p.get_x()] = disc;
+
+    walled_discs = wall_discs();
+
     next_disc = disc == Disc::Dark ? Disc::Light : Disc::Dark;
   }
 
@@ -60,7 +63,7 @@ namespace engine
       walled[y + 1][0] = Disc::Wall;
       for (int x = 0; x < BOARD_SIZE; x++)
       {
-        walled[y][x + 1] = discs[y][x];
+        walled[y + 1][x + 1] = discs[y][x];
       }
       walled[y + 1][BOARD_SIZE + 1] = Disc::Wall;
     }
@@ -80,9 +83,6 @@ namespace engine
     // TODO
     join(flip_points, check_flip_points(disc, p, 0, -1));
 
-    auto msg = boost::format("[debug] %d") % flip_points.size();
-    ui::set_message(msg.str());
-
     return flip_points;
   }
 
@@ -96,6 +96,8 @@ namespace engine
     int cur_x = walled_x + x_move;
     int cur_y = walled_y + y_move;
 
+    int i = 0;
+
     while (is_opposite_disc(disc, walled_discs[cur_y][cur_x]))
     {
       flip_candidate.push_back(Point(cur_x - 1, cur_y - 1));
@@ -106,6 +108,9 @@ namespace engine
         return flip_candidate;
       }
     }
+
+    auto msg = boost::format("[debug] %d") % i;
+    ui::set_message(msg.str());
 
     return std::vector<Point>();
   }
