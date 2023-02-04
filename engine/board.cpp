@@ -37,6 +37,11 @@ namespace engine
 
   void Board::place(Disc disc, Point p)
   {
+    if (discs[p.get_y()][p.get_x()] != Disc::Empty)
+    {
+      return;
+    }
+
     auto flip_points = list_flip_points(disc, p);
 
     if (flip_points.size() == 0)
@@ -87,8 +92,14 @@ namespace engine
   {
     std::vector<Point> flip_points;
 
-    // TODO
     join(flip_points, check_flip_points(disc, p, 0, -1));
+    join(flip_points, check_flip_points(disc, p, -1, -1));
+    join(flip_points, check_flip_points(disc, p, -1, 0));
+    join(flip_points, check_flip_points(disc, p, -1, 1));
+    join(flip_points, check_flip_points(disc, p, 0, 1));
+    join(flip_points, check_flip_points(disc, p, 1, 1));
+    join(flip_points, check_flip_points(disc, p, 1, 0));
+    join(flip_points, check_flip_points(disc, p, 1, -1));
 
     return flip_points;
   }
