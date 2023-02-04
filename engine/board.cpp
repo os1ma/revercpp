@@ -4,13 +4,10 @@
 #include "board.hpp"
 #include "disc.hpp"
 
-#include "../ui/view.hpp"
-#include <boost/format.hpp>
-
 namespace
 {
   template <typename T>
-  void join(std::vector<T> v1, std::vector<T> v2)
+  void join(std::vector<T> &v1, const std::vector<T> &v2)
   {
     v1.insert(v1.end(), v2.begin(), v2.end());
   }
@@ -42,7 +39,17 @@ namespace engine
   {
     auto flip_points = list_flip_points(disc, p);
 
+    if (flip_points.size() == 0)
+    {
+      return;
+    }
+
     discs[p.get_y()][p.get_x()] = disc;
+
+    for (auto &fp : flip_points)
+    {
+      discs[fp.get_y()][fp.get_x()] = disc;
+    }
 
     walled_discs = wall_discs();
 
@@ -96,8 +103,6 @@ namespace engine
     int cur_x = walled_x + x_move;
     int cur_y = walled_y + y_move;
 
-    int i = 0;
-
     while (is_opposite_disc(disc, walled_discs[cur_y][cur_x]))
     {
       flip_candidate.push_back(Point(cur_x - 1, cur_y - 1));
@@ -108,9 +113,6 @@ namespace engine
         return flip_candidate;
       }
     }
-
-    auto msg = boost::format("[debug] %d") % i;
-    ui::set_message(msg.str());
 
     return std::vector<Point>();
   }
