@@ -39,7 +39,7 @@ int main(void)
     }
     else if (ch == '\n')
     {
-      board.place(engine::Disc::Dark, p.get_x(), p.get_y());
+      board.place(board.get_next_disc(), p.get_x(), p.get_y());
     }
     else if (ch == 'q')
     {

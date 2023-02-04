@@ -20,7 +20,15 @@ namespace ui
         std::string str;
         if (p.is(x, y))
         {
-          str = "c";
+          auto next_disc = board.get_next_disc();
+          if (next_disc == engine::Disc::Dark)
+          {
+            str = "d";
+          }
+          else
+          {
+            str = "l";
+          }
         }
         else
         {

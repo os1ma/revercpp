@@ -12,18 +12,21 @@ namespace engine
     {
       for (auto &disc : line)
       {
-        disc = Empty;
+        disc = Disc::Empty;
       }
     }
 
-    discs[3][3] = Dark;
-    discs[3][4] = Light;
-    discs[4][3] = Light;
-    discs[4][4] = Dark;
+    discs[3][3] = Disc::Dark;
+    discs[3][4] = Disc::Light;
+    discs[4][3] = Disc::Light;
+    discs[4][4] = Disc::Dark;
+
+    next_disc = Disc::Dark;
   }
 
   void Board::place(Disc disc, int x, int y)
   {
     discs[y][x] = disc;
+    next_disc = disc == Disc::Dark ? Disc::Light : Disc::Dark;
   }
 }

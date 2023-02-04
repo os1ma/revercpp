@@ -1,5 +1,4 @@
 #include <ncurses.h>
-#include <boost/format.hpp>
 #include <string>
 
 #include "point.hpp"
