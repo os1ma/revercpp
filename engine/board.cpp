@@ -108,7 +108,7 @@ namespace engine
       flip_candidate.push_back(Point(cur_x - 1, cur_y - 1));
       cur_x += x_move;
       cur_y += y_move;
-      if (disc == walled_discs[cur_x][cur_y])
+      if (disc == walled_discs[cur_y][cur_x])
       {
         return flip_candidate;
       }
