@@ -1,8 +1,10 @@
 #pragma once
 
+#include "point.hpp"
+
 namespace ui
 {
   void initialize();
 
-  void show(const struct Point &p);
+  void show(const Point &p);
 }

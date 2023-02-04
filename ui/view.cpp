@@ -15,7 +15,7 @@ namespace ui
     curs_set(0);
   }
 
-  void show(const struct Point &p)
+  void show(const Point &p)
   {
     mvprintw(0, 0, "Reversi Game!!");
 
