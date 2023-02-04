@@ -42,4 +42,9 @@ namespace ui
     mvprintw(BOARD_SIZE + 4, 0, "Press 'q' to quit.");
   }
 
+  void set_message(const std::string &msg)
+  {
+    message = msg;
+  }
+
 }

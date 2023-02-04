@@ -1,4 +1,6 @@
 #include <ncurses.h>
+#include <string>
+#include <boost/format.hpp>
 
 #include "ui/view.hpp"
 #include "ui/point.hpp"
@@ -17,7 +19,7 @@ int main(void)
   {
     ui::show(board, p);
 
-    int ch = getch();
+    auto ch = getch();
 
     if (ch == 'h')
     {
@@ -34,6 +36,10 @@ int main(void)
     else if (ch == 'l')
     {
       p.right();
+    }
+    else if (ch == '\n')
+    {
+      board.place(engine::Disc::Dark, p.get_x(), p.get_y());
     }
     else if (ch == 'q')
     {
