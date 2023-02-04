@@ -4,6 +4,18 @@
 #include "board.hpp"
 #include "disc.hpp"
 
+#include "../ui/view.hpp"
+#include <boost/format.hpp>
+
+namespace
+{
+  template <typename T>
+  void join(std::vector<T> v1, std::vector<T> v2)
+  {
+    v1.insert(v1.end(), v2.begin(), v2.end());
+  }
+}
+
 namespace engine
 {
   Board::Board()
@@ -28,6 +40,8 @@ namespace engine
 
   void Board::place(Disc disc, Point p)
   {
+    auto flip_points = list_flip_points(disc, p);
+
     discs[p.get_y()][p.get_x()] = disc;
     next_disc = disc == Disc::Dark ? Disc::Light : Disc::Dark;
   }
@@ -64,7 +78,36 @@ namespace engine
     std::vector<Point> flip_points;
 
     // TODO
+    join(flip_points, check_flip_points(disc, p, 0, -1));
+
+    auto msg = boost::format("[debug] %d") % flip_points.size();
+    ui::set_message(msg.str());
 
     return flip_points;
   }
+
+  std::vector<Point> Board::check_flip_points(Disc disc, Point p, int x_move, int y_move)
+  {
+    int walled_x = p.get_x() + 1;
+    int walled_y = p.get_y() + 1;
+
+    std::vector<Point> flip_candidate;
+
+    int cur_x = walled_x + x_move;
+    int cur_y = walled_y + y_move;
+
+    while (is_opposite_disc(disc, walled_discs[cur_y][cur_x]))
+    {
+      flip_candidate.push_back(Point(cur_x - 1, cur_y - 1));
+      cur_x += x_move;
+      cur_y += y_move;
+      if (disc == walled_discs[cur_x][cur_y])
+      {
+        return flip_candidate;
+      }
+    }
+
+    return std::vector<Point>();
+  }
+
 }

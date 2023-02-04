@@ -9,4 +9,6 @@ namespace engine
     Light = 2,
     Wall = 3,
   };
+
+  bool is_opposite_disc(Disc d1, Disc d2);
 }
