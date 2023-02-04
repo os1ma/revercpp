@@ -13,7 +13,7 @@ void initialize()
   curs_set(0);
 }
 
-void show(const struct Point &p)
+void show(const struct UIPoint &p)
 {
   mvprintw(0, 0, "Reversi Game!!");
 
@@ -45,7 +45,7 @@ int main(void)
 {
   initialize();
 
-  Point p(3, 4);
+  UIPoint p(3, 4);
 
   while (true)
   {

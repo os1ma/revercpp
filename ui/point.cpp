@@ -1,23 +1,23 @@
 #include "point.hpp"
 
-bool Point::is(int x, int y) const
+bool UIPoint::is(int x, int y) const
 {
   return this->x == x && this->y == y;
 }
 
-void Point::left()
+void UIPoint::left()
 {
   x--;
 }
-void Point::right()
+void UIPoint::right()
 {
   x++;
 }
-void Point::up()
+void UIPoint::up()
 {
   y--;
 }
-void Point::down()
+void UIPoint::down()
 {
   y++;
 }

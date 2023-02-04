@@ -1,12 +1,12 @@
 #pragma once
 
-class Point
+class UIPoint
 {
   int x;
   int y;
 
 public:
-  Point(int x, int y) : x(x), y(y) {}
+  UIPoint(int x, int y) : x(x), y(y) {}
   bool is(int x, int y) const;
   void left();
   void right();
