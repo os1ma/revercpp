@@ -38,7 +38,6 @@ namespace ui
     attroff(COLOR_PAIR(Warning));
 
     show_board(2, board, p);
-    mvprintw(BOARD_SIZE + 4, 0, "Press 'q' to quit.");
   }
 
   void set_message(const std::string &msg)

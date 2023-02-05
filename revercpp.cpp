@@ -43,10 +43,6 @@ int main(void)
       engine::Point p(cur.get_x(), cur.get_y());
       board.place(board.get_next_disc(), p);
     }
-    else if (ch == 'q')
-    {
-      break;
-    }
   }
 
   endwin();
