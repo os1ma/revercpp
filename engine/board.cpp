@@ -56,6 +56,25 @@ namespace engine
     next_disc = decide_next_disc(disc);
   }
 
+  Disc Board::major_disc()
+  {
+    auto dark_count = count(Disc::Dark);
+    auto light_count = count(Disc::Light);
+
+    if (dark_count > light_count)
+    {
+      return Disc::Dark;
+    }
+    else if (light_count > dark_count)
+    {
+      return Disc::Light;
+    }
+    else
+    {
+      return Disc::Empty;
+    }
+  }
+
   // private
 
   Disc Board::decide_next_disc(Disc disc)
@@ -81,8 +100,7 @@ namespace engine
     }
   }
 
-  bool
-  Board::exist_valid_move(Disc disc)
+  bool Board::exist_valid_move(Disc disc)
   {
     for (int y = 0; y < BOARD_SIZE; y++)
     {
@@ -97,6 +115,22 @@ namespace engine
     }
 
     return false;
+  }
+
+  int Board::count(Disc disc)
+  {
+    int count = 0;
+    for (auto &line : discs)
+    {
+      for (auto &d : line)
+      {
+        if (d == disc)
+        {
+          count++;
+        }
+      }
+    }
+    return count;
   }
 
   WalledDiscs Board::wall_discs()

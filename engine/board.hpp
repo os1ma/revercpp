@@ -28,6 +28,8 @@ namespace engine
 
     void place(Disc disc, Point p);
 
+    Disc major_disc();
+
     Discs get_discs() const
     {
       return discs;
@@ -41,6 +43,7 @@ namespace engine
     WalledDiscs wall_discs();
     Disc decide_next_disc(Disc disc);
     bool exist_valid_move(Disc disc);
+    int count(Disc disc);
     std::vector<Point> list_flip_points(Disc disc, Point p);
     std::vector<Point> check_flip_points(Disc disc, Point p, int x_move, int y_move);
   };

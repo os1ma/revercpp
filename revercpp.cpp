@@ -46,12 +46,34 @@ int main(void)
 
       auto next_disc = board.get_next_disc();
 
-      if (disc == next_disc)
+      if (next_disc == engine::Disc::Empty)
       {
-        ui::set_message("skipped!");
-      }
+        auto major_disc = board.major_disc();
 
-      disc = next_disc;
+        std::string msg;
+        if (major_disc == engine::Disc::Dark)
+        {
+          msg = "Dark Win!!!";
+        }
+        else if (major_disc == engine::Disc::Light)
+        {
+          msg = "Light Win!!!";
+        }
+        else
+        {
+          msg = "Draw!";
+        }
+        ui::set_message(msg);
+      }
+      else
+      {
+        if (disc == next_disc)
+        {
+          ui::set_message("skipped!");
+        }
+
+        disc = next_disc;
+      }
     }
   }
 
