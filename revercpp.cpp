@@ -11,6 +11,7 @@
 int main(void)
 {
   engine::Board board;
+  engine::Disc disc = board.get_next_disc();
 
   ui::initialize();
 
@@ -41,7 +42,16 @@ int main(void)
     else if (ch == '\n')
     {
       engine::Point p(cur.get_x(), cur.get_y());
-      board.place(board.get_next_disc(), p);
+      board.place(disc, p);
+
+      auto next_disc = board.get_next_disc();
+
+      if (disc == next_disc)
+      {
+        ui::set_message("skipped!");
+      }
+
+      disc = next_disc;
     }
   }
 

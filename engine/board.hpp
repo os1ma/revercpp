@@ -39,6 +39,8 @@ namespace engine
 
   private:
     WalledDiscs wall_discs();
+    Disc decide_next_disc(Disc disc);
+    bool exist_valid_move(Disc disc);
     std::vector<Point> list_flip_points(Disc disc, Point p);
     std::vector<Point> check_flip_points(Disc disc, Point p, int x_move, int y_move);
   };

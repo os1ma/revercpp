@@ -37,11 +37,6 @@ namespace engine
 
   void Board::place(Disc disc, Point p)
   {
-    if (discs[p.get_y()][p.get_x()] != Disc::Empty)
-    {
-      return;
-    }
-
     auto flip_points = list_flip_points(disc, p);
 
     if (flip_points.size() == 0)
@@ -58,7 +53,50 @@ namespace engine
 
     walled_discs = wall_discs();
 
-    next_disc = disc == Disc::Dark ? Disc::Light : Disc::Dark;
+    next_disc = decide_next_disc(disc);
+  }
+
+  // private
+
+  Disc Board::decide_next_disc(Disc disc)
+  {
+    auto exist_dark_valid_move = exist_valid_move(Disc::Dark);
+    auto exist_light_valid_move = exist_valid_move(Disc::Light);
+
+    if (exist_dark_valid_move && exist_light_valid_move)
+    {
+      return disc == Disc::Dark ? Disc::Light : Disc::Dark;
+    }
+    else if (!exist_dark_valid_move && !exist_light_valid_move)
+    {
+      return Disc::Empty;
+    }
+    else if (exist_dark_valid_move)
+    {
+      return Disc::Dark;
+    }
+    else
+    {
+      return Disc::Light;
+    }
+  }
+
+  bool
+  Board::exist_valid_move(Disc disc)
+  {
+    for (int y = 0; y < BOARD_SIZE; y++)
+    {
+      for (int x = 0; x < BOARD_SIZE; x++)
+      {
+        auto flip_points = list_flip_points(disc, Point(x, y));
+        if (flip_points.size() != 0)
+        {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   WalledDiscs Board::wall_discs()
@@ -90,6 +128,11 @@ namespace engine
 
   std::vector<Point> Board::list_flip_points(Disc disc, Point p)
   {
+    if (discs[p.get_y()][p.get_x()] != Disc::Empty)
+    {
+      return std::vector<Point>();
+    }
+
     std::vector<Point> flip_points;
 
     join(flip_points, check_flip_points(disc, p, 0, -1));
