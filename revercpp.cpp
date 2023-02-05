@@ -42,7 +42,12 @@ int main(void)
     else if (ch == '\n')
     {
       engine::Point p(cur.get_x(), cur.get_y());
-      board.place(disc, p);
+      auto placed = board.place(disc, p);
+
+      if (!placed)
+      {
+        continue;
+      }
 
       auto next_disc = board.get_next_disc();
 

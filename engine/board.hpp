@@ -26,7 +26,7 @@ namespace engine
   public:
     Board();
 
-    void place(Disc disc, Point p);
+    bool place(Disc disc, Point p);
 
     Disc major_disc();
 

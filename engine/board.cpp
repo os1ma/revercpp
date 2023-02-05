@@ -35,13 +35,13 @@ namespace engine
     next_disc = Disc::Dark;
   }
 
-  void Board::place(Disc disc, Point p)
+  bool Board::place(Disc disc, Point p)
   {
     auto flip_points = list_flip_points(disc, p);
 
     if (flip_points.size() == 0)
     {
-      return;
+      return false;
     }
 
     discs[p.get_y()][p.get_x()] = disc;
@@ -54,6 +54,8 @@ namespace engine
     walled_discs = wall_discs();
 
     next_disc = decide_next_disc(disc);
+
+    return true;
   }
 
   Disc Board::major_disc()
